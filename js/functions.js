@@ -1,6 +1,7 @@
 //Функция для проверки длины строки
 
 const checkLength = (string, maxLength) => (string.length <= maxLength);
+checkLength();
 
 //Функция для проверки, является ли строка палиндромом.
 
@@ -18,7 +19,7 @@ function isPalindrom(string) {
   }
   return false;
 }
-
+isPalindrom();
 //Функция принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа.
 
 function makeNumber(string) {
@@ -33,5 +34,4 @@ function makeNumber(string) {
   }
   return parseInt(numbers, 10);
 }
-
-
+makeNumber();
