@@ -77,7 +77,6 @@ function createCommentId(min, max) {
   return function () {
     let currentId = createRandomInteger(min, max);
     if (previousId.length >= (max - min + 1)) {
-      console.error('Перебраны все числа из диапазона от ' + min + ' до ' + max);
       return null;
     }
     while (previousId.includes(currentId)) {
