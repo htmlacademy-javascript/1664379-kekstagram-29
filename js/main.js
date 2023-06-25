@@ -101,8 +101,8 @@ const getAvatar = createAvatar();
 //создание объекта комментария
 function getCommentData() {
   return {
-    id: [getCommentId()],
-    avatar: [getAvatar()],
+    id: getCommentId(),
+    avatar: getAvatar(),
     message: getRandomArrayElement(messages),
     name: getRandomArrayElement(namesOfAuthors)
   };
@@ -147,10 +147,10 @@ const getDescription = function () {
 //создание объекта данных фотографии
 function getPhotoData() {
   return {
-    id: [getId()],
-    url: [getUrl()],
+    id: getId(),
+    url: getUrl(),
     description: descriptions[getDescription()],
-    likes: [getLikes()],
+    likes: getLikes(),
     comments: getRandomArrayElement(comments),
   };
 }
