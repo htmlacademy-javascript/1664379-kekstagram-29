@@ -77,7 +77,7 @@ function getCommentData() {
   return {
     id: getCommentId(),
     avatar: getAvatar(),
-    message: Array.from({ length: createRandomInteger(1, 5) }, getMessage),
+    message: Array.from({ length: createRandomInteger(1, 2) }, getMessage),
     name: getRandomArrayElement(namesOfAuthors)
   };
 }
