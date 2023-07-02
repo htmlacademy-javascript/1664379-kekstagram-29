@@ -65,11 +65,19 @@ const createAvatar = function () {
 };
 const getAvatar = createAvatar();
 
+const createMessage = function() {
+  return function () {
+    return getRandomArrayElement(messages);
+  };
+};
+
+const getMessage = createMessage();
+
 function getCommentData() {
   return {
     id: getCommentId(),
     avatar: getAvatar(),
-    message: getRandomArrayElement(messages),
+    message: Array.from({ length: createRandomInteger(1, 5) }, getMessage),
     name: getRandomArrayElement(namesOfAuthors)
   };
 }
