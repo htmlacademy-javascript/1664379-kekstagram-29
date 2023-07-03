@@ -1,5 +1,3 @@
 import {createRandomInteger, getRandomArrayElement} from './util.js';
-createRandomInteger();
-getRandomArrayElement();
-import {photos, getPhotos} from './data.js';
-getPhotos();
+import {getPhotos} from './data.js';
+console.log(getPhotos());
