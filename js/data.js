@@ -87,7 +87,7 @@ function createUrl () {
   let lastId = 0;
   return function () {
     lastId += 1;
-    return `url:photos/${lastId}.jpg`;
+    return `photos/${lastId}.jpg`;
   };
 }
 const getUrl = createUrl();
