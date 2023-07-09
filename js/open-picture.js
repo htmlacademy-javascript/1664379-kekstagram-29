@@ -28,6 +28,13 @@ pictureCancelButton.addEventListener('click', () => {
   closePicture();
 });
 
+//ОБРАБОТЧИК закрытие картинки нажатием на мышь вне поля картинки
+document.addEventListener('click', (evt) => {
+  if (evt.target === bigPicture) {
+    closePicture();
+  }
+});
+
 //ОБРАБОТЧИК закрытие картинки нажатием клавиши ENTER на кнопке закрытия
 pictureCancelButton.addEventListener('keydown', (event) => {
   if (isEnterKey(event)) {

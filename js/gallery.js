@@ -4,11 +4,6 @@ import { openPicture } from './open-picture.js';
 import { isEnterKey } from './util.js';
 const thumbnailsList = document.querySelector('.pictures'); //section куда вставлять изображения
 
-
-//обернуть в функцию в которую добавить обработчик делигирования клик по контейнеру на миниатюру
-//renderThumbnails(allPhotos, thumbnailsList);
-
-
 //ОБРАБОТЧИК открытие большой картинки нажатием клавиши ENTER
 thumbnailsList.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
