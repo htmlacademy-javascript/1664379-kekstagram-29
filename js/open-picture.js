@@ -1,4 +1,3 @@
-import { allPhotos } from './data.js';
 import { isEscapeKey, isEnterKey } from './util.js'; //1. почему недостаточно импортировать только в main.js?
 
 const body = document.querySelector('body');
@@ -6,6 +5,7 @@ const bigPicture = document.querySelector('.big-picture'); //окно больш
 const pictureCancelButton = bigPicture.querySelector('.big-picture__cancel'); //кнопка закрытия окна с картинкой
 const socialCommentCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
+const commentTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
 
 //функция закрытия картинки нажатием ESCAPE на DOCUMENT
 const onDocumentKeydown = (evt) => {
@@ -35,38 +35,37 @@ pictureCancelButton.addEventListener('keydown', (event) => {
   }
 });
 
-
+//функция отрисовка большой картинки
 const renderPhotoDetails = ({ url, likes, comments, description }) => {
   bigPicture.querySelector('.big-picture__img img').src = url;
   bigPicture.querySelector('.big-picture__img img').alt = description;
   bigPicture.querySelector('.social__caption').textContent = description;
   bigPicture.querySelector('.likes-count').textContent = likes;
   bigPicture.querySelector('.comments-count').textContent = comments;//поле пока скрыто
-
 };
-///СОЗНАНИЕ КОММЕНТАРИЕВ
-/*
-const createComment = ({ comments, description, likes, url, id }) => {
-  const thumbnail = thumbnailsTemplate.cloneNode(true);
-  thumbnail.querySelector('.picture__img').src = url;
-  thumbnail.querySelector('.picture__img').alt = description;
-  thumbnail.querySelector('.picture__comments').textContent = comments.length;
-  thumbnail.querySelector('.picture__likes').textContent = likes;
-  thumbnail.dataset.thumbnailId = id;
 
-  return thumbnail;
+///функция создания комменатрия по шаблону
+const createComment = ({ avatar, name, message }) => {
+  //console.log();
+  const comment = commentTemplate.cloneNode(true);
+  comment.querySelector('.social__picture').src = avatar;
+  comment.querySelector('.social__picture').alt = name;
+  comment.querySelector('.social__text').textContent = message;
+  return comment;
 };
-*/
-/////
+
+//ДОБАВЛЕНИЕ КОММЕНТАРИЯ К ОКНУ БОЛЬШОЙ КАРТИНКИ
+
 const renderComments = (comments) => {
-  const socialCommentList = bigPicture.querySelector('.social__comments').innerHTML = '';
+  const socialCommentList = bigPicture.querySelector('.social__comments');
+  socialCommentList.innerHTML = '';
   const fragment = document.createDocumentFragment();
   comments.forEach((element) => {
-    const comment = createComment(element);
-    fragment.append(comment);
+    const commentElement = createComment(element);
+    fragment.append(commentElement);
   });
+  socialCommentList.append(fragment);
 };
-
 
 
 //функция открытия картинки
@@ -81,9 +80,6 @@ const openPicture = (data) => {
   renderPhotoDetails(data);
   renderComments(data.comments);
 };
-
-
-console.log(allPhotos);
 
 
 export { bigPicture, openPicture, closePicture };

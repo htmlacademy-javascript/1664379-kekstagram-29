@@ -53,7 +53,7 @@ const getCommentId = createCommentId(0, 9999);
 function createAvatar () {
   return function () {
     const avatarId = createRandomInteger(1, 6);
-    return (`img/avatar-${ avatarId }.jpg`);
+    return (`img/avatar-${ avatarId }.svg`);
   };
 }
 const getAvatar = createAvatar();
