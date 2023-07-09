@@ -1,4 +1,4 @@
-const thumbnailsList = document.querySelector('.pictures'); //section куда вставлять изображения
+
 const thumbnailsTemplate = document.querySelector('#picture').content.querySelector('.picture'); //шаблон
 
 const createThumbnail = ({ comments, description, likes, url, id }) => {
@@ -12,13 +12,13 @@ const createThumbnail = ({ comments, description, likes, url, id }) => {
   return thumbnail;
 };
 
-const renderThumbnails = (pictures) => {
+const renderThumbnails = (pictures, conteiner) => {
   const fragment = document.createDocumentFragment();
   pictures.forEach((picture) => {
     const thumbnail = createThumbnail(picture);
     fragment.append(thumbnail);
   });
-  thumbnailsList.append(fragment);
+  conteiner.append(fragment);
 };
 
-export{renderThumbnails, thumbnailsList};
+export{renderThumbnails};

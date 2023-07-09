@@ -106,7 +106,7 @@ function getPhotoData() {
   };
 }
 
-function getPhotos() {
+function getPhotoElements() {
   const photos = [];
   for (let i = 0; i < maxNumberOfPotos; i++){
     photos.push(getPhotoData());
@@ -114,4 +114,5 @@ function getPhotos() {
   return photos;
 }
 
-export{getPhotos};
+const allPhotos = getPhotoElements();
+export{allPhotos};

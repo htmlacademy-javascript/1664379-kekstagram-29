@@ -15,9 +15,11 @@
 </li>
 - Описание фотографии description вставьте строкой в блок .social__caption.
 */
-import { thumbnailsList } from './thumbnail.js';
-import {bigPicture, bigPicturImg} from './open-picture.js';
-import {getPhotos} from './data.js';
+//import { thumbnailsList } from './gallery.js';
+/*
+const bigPicturImg = bigPicture.querySelector('img');
+import {bigPicture} from './open-picture.js';
+import {getPhotoElements} from './data.js';
 
 /*
 thumbnailsList.addEventListener('click', () => {
