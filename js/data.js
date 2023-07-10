@@ -3,6 +3,7 @@ import {createRandomInteger, getRandomArrayElement} from './util.js';
 const maxNumberOfPotos = 25;
 const minLikes = 15;
 const maxLikes = 200;
+const maxComment = 100;
 
 const descriptions = [
   'природа',
@@ -102,7 +103,7 @@ function getPhotoData() {
     url: getUrl(),
     description: descriptions[getDescription()],
     likes: createRandomInteger(minLikes, maxLikes),
-    comments: Array.from({ length: createRandomInteger(0, 10) }, getCommentData),
+    comments: Array.from({ length: createRandomInteger(0, maxComment) }, getCommentData),
   };
 }
 
