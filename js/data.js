@@ -3,6 +3,7 @@ import {createRandomInteger, getRandomArrayElement} from './util.js';
 const maxNumberOfPotos = 25;
 const minLikes = 15;
 const maxLikes = 200;
+const maxComment = 100;
 
 const descriptions = [
   'природа',
@@ -53,7 +54,7 @@ const getCommentId = createCommentId(0, 9999);
 function createAvatar () {
   return function () {
     const avatarId = createRandomInteger(1, 6);
-    return (`img/avatar-${ avatarId }.jpg`);
+    return (`img/avatar-${ avatarId }.svg`);
   };
 }
 const getAvatar = createAvatar();
@@ -102,11 +103,11 @@ function getPhotoData() {
     url: getUrl(),
     description: descriptions[getDescription()],
     likes: createRandomInteger(minLikes, maxLikes),
-    comments: Array.from({ length: createRandomInteger(0, 10) }, getCommentData),
+    comments: Array.from({ length: createRandomInteger(0, maxComment) }, getCommentData),
   };
 }
 
-function getPhotos() {
+function getPhotoElements() {
   const photos = [];
   for (let i = 0; i < maxNumberOfPotos; i++){
     photos.push(getPhotoData());
@@ -114,4 +115,5 @@ function getPhotos() {
   return photos;
 }
 
-export{getPhotos};
+const allPhotos = getPhotoElements();
+export{allPhotos};

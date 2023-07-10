@@ -1,5 +1,4 @@
-import {createRandomInteger, getRandomArrayElement} from './util.js';
-import {getPhotos} from './data.js';
-import {renderThumbnails} from './thumbnail.js';
+import {createRandomInteger, getRandomArrayElement, isEscapeKey, isEnterKey} from './util.js';
+import {bigPicture} from './open-picture.js';
+import './gallery.js';
 
-renderThumbnails(getPhotos());
