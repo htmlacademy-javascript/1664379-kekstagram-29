@@ -22,6 +22,7 @@ const renderCallery = (pictures) => {
     }
 
     evt.preventDefault();
+    evt.stopPropagation();
     const targetPhoto = pictures.find((item) =>
       item.id === +thumbnail.dataset.thumbnailId
     );
