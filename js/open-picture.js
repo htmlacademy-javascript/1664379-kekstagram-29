@@ -2,7 +2,6 @@ import { isEscapeKey, isEnterKey } from './util.js';
 import './thumbnail.js';
 
 const body = document.querySelector('body');
-const thumbnailsList = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture'); //окно большой картинки
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel'); //кнопка закрытия окна с картинкой
 const socialCommentCount = bigPicture.querySelector('.comments-count');
@@ -11,24 +10,11 @@ const commentTemplate = document.querySelector('#comment').content.querySelector
 const COMMENTS_IN_SECTION = 5;
 let commentsSwon = 0;
 
-
-
-//функция удаления hidden на окно большой картинки
-const showBigPicture = () => {
-  bigPicture.classList.remove('hidden');
-};
-
 //функция добавления hidden на окно большой картинки
 const hideBigPicture = () => {
   bigPicture.classList.add('hidden');
+  body.classList.remove('modal-open');
 };
-
-//открытие большой картинки
-thumbnailsList.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('picture__img')) {
-    showBigPicture();
-  }
-});
 
 //закрытие картинки нажатием на кнопку
 bigPictureCancel.addEventListener('click', () => {
@@ -42,21 +28,16 @@ bigPictureCancel.addEventListener('keydown', (evt) => {
   }
 });
 
-//закрытие картинки нажатием клавиши ESCAPE
-document.addEventListener('keydown', (evt) => {
-  if (isEscapeKey(evt)) {
-    hideBigPicture();
-  }
-});
-
 //функция закрытия картинки нажатием ESCAPE на DOCUMENT
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    bigPicture.classList.add('hidden');
-    body.classList.remove('modal-open');
+    hideBigPicture();
   }
 };
+
+//закрытие картинки нажатием клавиши ESCAPE
+document.addEventListener('keydown', onDocumentKeydown);
 
 //функция зактытия картинки
 const closePicture = () => {
@@ -86,30 +67,34 @@ const createComment = ({ avatar, name, message }) => {
 
 //ДОБАВЛЕНИЕ КОММЕНТАРИЯ К ОКНУ БОЛЬШОЙ КАРТИНКИ
 ////////////////////////////////////////
+const socialCommentList = bigPicture.querySelector('.social__comments');
+socialCommentList.innerHTML = '';
 
 const renderComments = (comments) => {
 
   commentsSwon += COMMENTS_IN_SECTION;
+  console.log(commentsSwon);
   if (comments.length <= commentsSwon) {
     commentsLoader.classList.add('hidden');
     commentsSwon = comments.length;
   } else {
     commentsLoader.classList.remove('hidden');
   }
-  const socialCommentList = bigPicture.querySelector('.social__comments');
-  socialCommentList.innerHTML = '';
+
+
   const fragment = document.createDocumentFragment();
   for (let i = 0; i < commentsSwon; i++) {
     const comment = createComment(comments[i]);
+    console.log(comments[i]);
     fragment.append(comment);
   }
 
-  socialCommentList.innerHTML = '';
   socialCommentCount.textContent = comments.length;
   socialCommentList.append(fragment);
 
 };
 
+//закрытие картинки кликом мимо картинки
 document.addEventListener('click', (evt) => {
   if (evt.target === bigPicture) {
     closePicture();
