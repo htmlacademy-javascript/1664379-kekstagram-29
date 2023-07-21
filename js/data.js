@@ -93,15 +93,11 @@ function createUrl () {
 }
 const getUrl = createUrl();
 
-const getDescription = function () {
-  return createRandomInteger(0, descriptions.length - 1);
-};
-
 function getPhotoData() {
   return {
     id: getId(),
     url: getUrl(),
-    description: descriptions[getDescription()],
+    description: descriptions[createRandomInteger(0, descriptions.length - 1)],
     likes: createRandomInteger(minLikes, maxLikes),
     comments: Array.from({ length: createRandomInteger(0, maxComment) }, getCommentData),
   };
@@ -117,3 +113,5 @@ function getPhotoElements() {
 
 const allPhotos = getPhotoElements();
 export{allPhotos};
+
+//создан массив с иконками изображений. переход в файл gallery

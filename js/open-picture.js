@@ -1,32 +1,24 @@
 import { isEscapeKey, isEnterKey } from './util.js';
-import './thumbnail.js';
 
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture'); //окно большой картинки
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel'); //кнопка закрытия окна с картинкой
-const socialCommentCount = bigPicture.querySelector('.comments-count');
+const commentCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const commentTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
-const COMMENTS_IN_SECTION = 5;
-let commentsSwon = 0;
 
-//функция добавления hidden на окно большой картинки
+const COMMENTS_IN_SECTION = 5;
+let commentsShown = 0;
+let commentsX = [];
+const renderCommentCounter = () => {
+
+};
+
+//функция для скрытия большой картинки
 const hideBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
 };
-
-//закрытие картинки нажатием на кнопку
-bigPictureCancel.addEventListener('click', () => {
-  hideBigPicture();
-});
-
-//закрытие картинки нажатием клавиши ENTER на кнопке закрытия
-bigPictureCancel.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    hideBigPicture();
-  }
-});
 
 //функция закрытия картинки нажатием ESCAPE на DOCUMENT
 const onDocumentKeydown = (evt) => {
@@ -35,17 +27,26 @@ const onDocumentKeydown = (evt) => {
     hideBigPicture();
   }
 };
-
-//закрытие картинки нажатием клавиши ESCAPE
+//обработчик на документе закрытие картинки нажатием клавиши ESCAPE УДАЛИТЬ!!!
 document.addEventListener('keydown', onDocumentKeydown);
 
 //функция зактытия картинки
 const closePicture = () => {
-  bigPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeydown);
-  commentsSwon = 0;
+  hideBigPicture();
+  document.removeEventListener('keydown', onDocumentKeydown);//удаление обработчика на документе
+  //commentsSwon = 0;
 };
+//закрытие картинки нажатием на кнопку
+bigPictureCancel.addEventListener('click', () => {
+  closePicture();
+});
+//закрытие картинки нажатием ENTER на кнопке закрытия
+bigPictureCancel.addEventListener('keydown', (evt) => {
+  if (isEnterKey(evt)) {
+    closePicture();
+  }
+});
+
 
 //функция отрисовка большой картинки
 const renderPhotoDetails = ({ url, likes, comments, description }) => {
@@ -53,7 +54,8 @@ const renderPhotoDetails = ({ url, likes, comments, description }) => {
   bigPicture.querySelector('.big-picture__img img').alt = description;
   bigPicture.querySelector('.social__caption').textContent = description;
   bigPicture.querySelector('.likes-count').textContent = likes;
-  bigPicture.querySelector('.comments-count').textContent = comments;//поле пока скрыто
+  bigPicture.querySelector('.social__comments').textContent = comments;
+
 };
 
 ///функция создания комменатрия по шаблону
@@ -72,26 +74,21 @@ socialCommentList.innerHTML = '';
 
 const renderComments = (comments) => {
 
-  commentsSwon += COMMENTS_IN_SECTION;
-  console.log(commentsSwon);
-  if (comments.length <= commentsSwon) {
+  if (comments.length <= commentsShown) {
     commentsLoader.classList.add('hidden');
-    commentsSwon = comments.length;
+    commentsShown = comments.length;
   } else {
     commentsLoader.classList.remove('hidden');
   }
 
-
   const fragment = document.createDocumentFragment();
-  for (let i = 0; i < commentsSwon; i++) {
+  for (let i = 0; i < commentsShown; i++) {
     const comment = createComment(comments[i]);
-    console.log(comments[i]);
     fragment.append(comment);
   }
 
-  socialCommentCount.textContent = comments.length;
   socialCommentList.append(fragment);
-
+  commentCount.innerHTML = `${commentsShown} из <span class="comments-count"> ${comments.length}</span> комментариев`;
 };
 
 //закрытие картинки кликом мимо картинки
@@ -111,8 +108,11 @@ const openPicture = (data) => {
 
   renderPhotoDetails(data);
   renderComments(data.comments);
+
+
+  commentsLoader.addEventListener('click', () => renderComments(data.comments)); //ЛОМАЕТ ДЕСТРУКТУРИЗАЦИЮ
+
 };
 
-commentsLoader.addEventListener('click', renderComments); //ЛОМАЕТ ДЕСТРУКТУРИЗАЦИЮ
 
 export { bigPicture, openPicture, closePicture };
