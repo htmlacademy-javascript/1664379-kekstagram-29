@@ -3,7 +3,7 @@ import {createRandomInteger, getRandomArrayElement} from './util.js';
 const maxNumberOfPotos = 25;
 const minLikes = 15;
 const maxLikes = 200;
-const maxComment = 100;
+const maxComment = 30;
 
 const descriptions = [
   'природа',
