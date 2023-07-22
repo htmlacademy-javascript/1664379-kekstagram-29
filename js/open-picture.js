@@ -34,6 +34,7 @@ const closePicture = () => {
   document.removeEventListener('keydown', onDocumentKeydown);//удаление обработчика на документе
   commentsShown = 0;
   socialCommentList.innerHTML = '';
+  console.log('закрытие картинки commentsShown = ' + commentsShown);
 };
 //закрытие картинки нажатием на кнопку
 bigPictureCancel.addEventListener('click', () => {
@@ -89,14 +90,9 @@ const renderComments = (comments) => {
 };
 
 const onCommentsLoaderClick = function (comments) {
-  if ((comments.length - commentsShown) >= COMMENTS_IN_SECTION) {
-    //commentsShown += COMMENTS_IN_SECTION;
-
-  } else {
-    commentsShown = commentsShown + (comments.length - commentsShown);
-  }
   socialCommentList.innerHTML = '';
   renderComments(comments);
+  console.log('подгрузка комментариев commentsShown = ' + commentsShown);
 };
 
 //закрытие картинки кликом мимо картинки
@@ -119,6 +115,7 @@ const openPicture = (data) => {
 
 
   commentsLoader.addEventListener('click', () => onCommentsLoaderClick(data.comments));
+  console.log('открытие картинки commentsShown = ' + commentsShown);
 };
 
 
