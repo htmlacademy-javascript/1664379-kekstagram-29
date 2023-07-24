@@ -10,6 +10,7 @@ const socialCommentList = bigPicture.querySelector('.social__comments');
 socialCommentList.innerHTML = '';
 const COMMENTS_IN_SECTION = 5;
 let commentsShown = 0;
+let comments = [];
 
 
 //функция для скрытия большой картинки
@@ -34,7 +35,7 @@ const closePicture = () => {
   document.removeEventListener('keydown', onDocumentKeydown);//удаление обработчика на документе
   commentsShown = 0;
   socialCommentList.innerHTML = '';
-  console.log('закрытие картинки commentsShown = ' + commentsShown);
+
 };
 //закрытие картинки нажатием на кнопку
 bigPictureCancel.addEventListener('click', () => {
@@ -90,10 +91,10 @@ const renderComments = (comments) => {
   commentCount.innerHTML = `${commentsShown} из <span class="comments-count"> ${comments.length}</span> комментариев`;
 };
 
-const onCommentsLoaderClick = function (comments) {
+const onCommentsLoaderClick = function () {
   socialCommentList.innerHTML = '';
   renderComments(comments);
-  console.log('подгрузка комментариев commentsShown = ' + commentsShown);
+
 };
 
 //закрытие картинки кликом мимо картинки
@@ -105,7 +106,8 @@ document.addEventListener('click', (evt) => {
 /////////////////////////////////////////////
 //функция открытия картинки
 const openPicture = (data) => {
-
+  comments = data.comments;
+  commentsLoader.removeEventListener('click', onCommentsLoaderClick);
   bigPicture.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
   body.classList.add('modal-open');
@@ -115,8 +117,8 @@ const openPicture = (data) => {
   renderComments(data.comments);
 
 
-  commentsLoader.addEventListener('click', () => onCommentsLoaderClick(data.comments));
-  console.log('открытие картинки commentsShown = ' + commentsShown);
+  commentsLoader.addEventListener('click', onCommentsLoaderClick);
+
 };
 
 
