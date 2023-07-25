@@ -34,5 +34,5 @@ const renderCallery = (pictures) => {
   renderThumbnails(allPhotos, thumbnailsList);
 };
 
+export {renderCallery};
 
-renderCallery(allPhotos);

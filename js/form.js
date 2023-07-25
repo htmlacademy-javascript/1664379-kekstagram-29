@@ -1,5 +1,6 @@
 import { isEscapeKey } from './util.js';
 import {isTextFieldFocused, pristine} from './form-validate.js';
+import {resetEffects} from './effects.js';
 const form = document.querySelector('.img-upload__form');//форма загрузки изображения
 const imgUploadOverlay = form.querySelector('.img-upload__overlay');//удалить hidden. для body добавить modal-open
 const formCancelButton = form.querySelector('.img-upload__cancel');
@@ -8,10 +9,10 @@ const body = document.querySelector('body');
 const closeModal = () => {
   form.reset();
   //resetScale;
-  //resetEffect;
   pristine.reset();
   imgUploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
+  resetEffects();
 };
 
 const onDocumentKeydownEscape = (evt) => {

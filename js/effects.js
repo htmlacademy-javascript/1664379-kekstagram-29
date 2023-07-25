@@ -68,6 +68,7 @@ let chosenEffect = DEFAULT_EFFECT;
 
 
 // создание слайдер с помощью библиотеки
+/*
 noUiSlider.create(effectLevelSlider, {
   range: {
     min: 0,
@@ -77,7 +78,7 @@ noUiSlider.create(effectLevelSlider, {
   start: 0,
   connect: 'lower'
 });
-
+*/
 //вспомогательные функции
 const isDefault = () => chosenEffect === DEFAULT_EFFECT;
 const showSlider = () => effectLevelContainer.classList.remove('hidden');
@@ -109,9 +110,10 @@ const onEffectsChange = (evt) => {
   imgPreview.className = `effects__preview--${chosenEffect.name}`;
   updateSlider();
 };
-/*
+
 ///зачем еще раз создавать слайдер?!
-const initSlider = () => {
+
+const createSlider = () => {
   noUiSlider.create(effectLevelSlider, {
     range: {
       min: DEFAULT_EFFECT.min,
@@ -122,8 +124,8 @@ const initSlider = () => {
     connect: 'lower',
   });
 };
-*/
 
+//initSlider();
 //НЕПОНЯТНАЯ ФУНКЦИЯ. ПОЧЕМУ В ТЕРНАРНЫЙ ОПЕРАТОР ПЕРЕДАНЫ НЕ ФУНКЦИИ?!
 const onSliderUpdate = () => {
   const sliderValue = effectLevelSlider.noUiSlider.get();//получаем значение ползунка
@@ -141,15 +143,20 @@ const resetEffects = () => {
 };
 
 const setEffectsSlider = () => {
-  initSlider();
+  createSlider();
   hideSlider();
-  effectsElement.addEventListener('change', onEffectsChange);
-  sliderElement.noUiSlider.on('update', onSliderUpdate);
+  effectsList.addEventListener('change', onEffectsChange);
+  effectLevelSlider.noUiSlider.on('update', onSliderUpdate);
 
 };
+
+export {resetEffects, setEffectsSlider};
+
 ////ПОДУМАТЬ КУДА ПОВЕСИТЬ ОБРАБОТЧКИКИ
+/*
 effectsList.addEventListener('change', onEffectsChange);
 form.addEventListener('click', onSliderUpdate);
+*/
 
 ///ОКОНЧАНИЕ ФАЙЛА
-export {resetEffects, setEffectsSlider};
+

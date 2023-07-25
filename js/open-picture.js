@@ -35,7 +35,6 @@ const closePicture = () => {
   document.removeEventListener('keydown', onDocumentKeydown);//удаление обработчика на документе
   commentsShown = 0;
   socialCommentList.innerHTML = '';
-
 };
 //закрытие картинки нажатием на кнопку
 bigPictureCancel.addEventListener('click', () => {
@@ -47,7 +46,6 @@ bigPictureCancel.addEventListener('keydown', (evt) => {
     closePicture();
   }
 });
-
 
 //функция отрисовка большой картинки
 const renderPhotoDetails = ({ url, likes, description }) => {
@@ -69,21 +67,17 @@ const createComment = ({ avatar, name, message }) => {
 //ДОБАВЛЕНИЕ КОММЕНТАРИЯ К ОКНУ БОЛЬШОЙ КАРТИНКИ
 ////////////////////////////////////////
 
-
-
-const renderComments = (comments) => {
- // debugger;
+const renderComments = (items) => {
   commentsShown += COMMENTS_IN_SECTION;
   if (comments.length <= commentsShown) {
     commentsLoader.classList.add('hidden');
-    commentsShown = comments.length;
+    commentsShown = items.length;
   } else {
     commentsLoader.classList.remove('hidden');
   }
 
   const fragment = document.createDocumentFragment();
   for (let i = 0; i < commentsShown; i++) {
-    console.log(i + 1);
     const comment = createComment(comments[i]);
     fragment.append(comment);
   }
