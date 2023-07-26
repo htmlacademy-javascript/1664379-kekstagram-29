@@ -5,6 +5,7 @@ import { isEnterKey } from './util.js';
 const thumbnailsList = document.querySelector('.pictures'); //section куда вставлять изображения
 
 //ОБРАБОТЧИК открытие большой картинки нажатием клавиши ENTER
+
 thumbnailsList.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
     if (evt.target.classList.contains('picture')) {
@@ -13,7 +14,9 @@ thumbnailsList.addEventListener('keydown', (evt) => {
   }
 });
 
+
 //ОБРАБОТЧИК открытие большой картинки нажатием мышки
+
 const renderCallery = (pictures) => {
   thumbnailsList.addEventListener('click', (evt) => {
     const thumbnail = evt.target.closest('[data-thumbnail-id]');
@@ -22,6 +25,7 @@ const renderCallery = (pictures) => {
     }
 
     evt.preventDefault();
+    // evt.stopPropagation();
     const targetPhoto = pictures.find((item) =>
       item.id === +thumbnail.dataset.thumbnailId
     );
@@ -30,5 +34,5 @@ const renderCallery = (pictures) => {
   renderThumbnails(allPhotos, thumbnailsList);
 };
 
+export {renderCallery};
 
-renderCallery(allPhotos);
