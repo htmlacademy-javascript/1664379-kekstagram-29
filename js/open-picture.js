@@ -12,7 +12,6 @@ const COMMENTS_IN_SECTION = 5;
 let commentsShown = 0;
 let comments = [];
 
-
 //функция для скрытия большой картинки
 const hideBigPicture = () => {
   bigPicture.classList.add('hidden');
@@ -97,7 +96,7 @@ document.addEventListener('click', (evt) => {
     closePicture();
   }
 });
-/////////////////////////////////////////////
+
 //функция открытия картинки
 const openPicture = (data) => {
   comments = data.comments;
@@ -106,14 +105,11 @@ const openPicture = (data) => {
   document.addEventListener('keydown', onDocumentKeydown);
   body.classList.add('modal-open');
 
-
   renderPhotoDetails(data);
   renderComments(data.comments);
-
 
   commentsLoader.addEventListener('click', onCommentsLoaderClick);
 
 };
-
 
 export { bigPicture, openPicture, closePicture };

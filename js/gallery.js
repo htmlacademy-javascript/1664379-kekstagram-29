@@ -14,7 +14,6 @@ thumbnailsList.addEventListener('keydown', (evt) => {
   }
 });
 
-
 //ОБРАБОТЧИК открытие большой картинки нажатием мышки
 
 const renderCallery = (pictures) => {
@@ -35,4 +34,3 @@ const renderCallery = (pictures) => {
 };
 
 export {renderCallery};
-
