@@ -1,6 +1,4 @@
 const STEP = 25;
-const MIN_STEP = 25;
-const MAX_STEP = 100;
 const DEFAULT = 100;
 let currentScale = DEFAULT;
 
@@ -15,7 +13,6 @@ const resetScale = () => {
   scaleControlValue.value = `${DEFAULT}%`;
   imgPreview.style.transform = `scale(${DEFAULT / 100})`;
 };
-
 
 //увеличение масштаба
 
@@ -51,4 +48,3 @@ const onScaleControlSmallerClick = () => {
 };
 
 export { resetScale, onScaleControlBiggerClick, onScaleControlSmallerClick };
-

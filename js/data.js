@@ -1,4 +1,3 @@
-
 import {createRandomInteger, getRandomArrayElement} from './util.js';
 const maxNumberOfPotos = 25;
 const minLikes = 15;

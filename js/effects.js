@@ -1,4 +1,3 @@
-
 const EFFECTS = [
   {
     name: 'none',
@@ -56,25 +55,11 @@ const effectsList = form.querySelector('.effects__list');//ul со списко�
 const effectLevelContainer = form.querySelector('.effect-level');//контейнер со слайдером интенсивности
 const effectLevelSlider = form.querySelector('.effect-level__slider');//интенсивность эффекта
 const effectLevelBar = form.querySelector('.effect-level__value');//input  в контейнере со слайдером
-
-
 const DEFAULT_EFFECT = EFFECTS[0];
 let chosenEffect = DEFAULT_EFFECT;
 
-
-// создание слайдер с помощью библиотеки
-/*
-noUiSlider.create(effectLevelSlider, {
-  range: {
-    min: 0,
-    max: 0,
-  },
-  step: 0,
-  start: 0,
-  connect: 'lower'
-});
-*/
 //вспомогательные функции
+
 const isDefault = () => chosenEffect === DEFAULT_EFFECT;
 const showSlider = () => effectLevelContainer.classList.remove('hidden');
 const hideSlider = () => effectLevelContainer.classList.add('hidden');
@@ -106,7 +91,7 @@ const onEffectsChange = (evt) => {
   updateSlider();
 };
 
-///зачем еще раз создавать слайдер?!
+///создание слайдера с помощью бибилиотеки
 
 const createSlider = () => {
   noUiSlider.create(effectLevelSlider, {
@@ -120,8 +105,6 @@ const createSlider = () => {
   });
 };
 
-//initSlider();
-//НЕПОНЯТНАЯ ФУНКЦИЯ. ПОЧЕМУ В ТЕРНАРНЫЙ ОПЕРАТОР ПЕРЕДАНЫ НЕ ФУНКЦИИ?!
 const onSliderUpdate = () => {
   const sliderValue = effectLevelSlider.noUiSlider.get();//получаем значение ползунка
 
@@ -131,7 +114,6 @@ const onSliderUpdate = () => {
   effectLevelBar.value = sliderValue;//в атрибут value тега input в fieldset слайдера вставляем значение ползунка (НУЖНО ДЛЯ ОТПРАВКИ НА СЕРВЕР?)
 };
 
-///РАЗОБРАТЬ ЭТИ ФУНКЦИИ////
 const resetEffects = () => {
   chosenEffect = DEFAULT_EFFECT;
   updateSlider();
@@ -146,12 +128,3 @@ const setEffectsSlider = () => {
 };
 
 export {resetEffects, setEffectsSlider};
-
-////ПОДУМАТЬ КУДА ПОВЕСИТЬ ОБРАБОТЧКИКИ
-/*
-effectsList.addEventListener('change', onEffectsChange);
-form.addEventListener('click', onSliderUpdate);
-*/
-
-///ОКОНЧАНИЕ ФАЙЛА
-

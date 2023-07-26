@@ -24,7 +24,6 @@ const onDocumentKeydownEscape = (evt) => {
   }
 };
 
-
 const showModal = () => {
 
   imgUploadOverlay.classList.remove('hidden');
