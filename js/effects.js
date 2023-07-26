@@ -51,15 +51,10 @@ const EFFECTS = [
 ];
 
 const form = document.querySelector('.img-upload__form');//форма загрузки изображения
-const scaleControlBigger = form.querySelector('.scale__control--bigger');//масштаб больше
-const scaleControlSmaller = form.querySelector('.scale__control--smaller');//масштаб меньше
-const scaleControlValue = form.querySelector('.scale__control--value');// окно отображения масштаба
 const imgPreview = form.querySelector('.img-upload__preview img');//сама картинка
 const effectsList = form.querySelector('.effects__list');//ul со списком эффектов
-
 const effectLevelContainer = form.querySelector('.effect-level');//контейнер со слайдером интенсивности
 const effectLevelSlider = form.querySelector('.effect-level__slider');//интенсивность эффекта
-
 const effectLevelBar = form.querySelector('.effect-level__value');//input  в контейнере со слайдером
 
 
