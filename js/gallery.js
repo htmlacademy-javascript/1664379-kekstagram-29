@@ -1,5 +1,3 @@
-import { renderThumbnails } from './thumbnail.js';
-import { allPhotos } from './data.js';
 import { openPicture } from './open-picture.js';
 import { isEnterKey } from './util.js';
 const thumbnailsList = document.querySelector('.pictures'); //section куда вставлять изображения
@@ -24,13 +22,11 @@ const renderCallery = (pictures) => {
     }
 
     evt.preventDefault();
-    // evt.stopPropagation();
     const targetPhoto = pictures.find((item) =>
       item.id === +thumbnail.dataset.thumbnailId
     );
     openPicture(targetPhoto);
   });
-  renderThumbnails(allPhotos, thumbnailsList);
 };
 
 export {renderCallery};
