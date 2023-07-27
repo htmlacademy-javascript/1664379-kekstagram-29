@@ -3,10 +3,17 @@ import {isTextFieldFocused, pristine} from './form-validate.js';
 import {resetEffects} from './effects.js';
 import {resetScale} from './scale.js';
 
+
 const form = document.querySelector('.img-upload__form');//форма загрузки изображения
 const imgUploadOverlay = form.querySelector('.img-upload__overlay');//удалить hidden. для body добавить modal-open
 const formCancelButton = form.querySelector('.img-upload__cancel');
+const submitButton = form.querySelector('.img-upload__submit');
 const body = document.querySelector('body');
+
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...'
+};
 
 const closeModal = () => {
   form.reset();
@@ -25,7 +32,6 @@ const onDocumentKeydownEscape = (evt) => {
 };
 
 const showModal = () => {
-
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydownEscape);
@@ -38,4 +44,31 @@ const onFormValueChange = () => {
   form.addEventListener('change', showModal);
 };
 
-export {onFormValueChange};
+
+
+
+//////////
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = SubmitButtonText.SENDING;
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = SubmitButtonText.IDLE;
+};
+
+const setOnFormSubmit = (callback) => {
+  form.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+
+    if (isValid) {
+      blockSubmitButton();
+      callback(new FormData(form));
+    }
+  });
+};
+/////////////
+
+export {closeModal, onFormValueChange, unblockSubmitButton, blockSubmitButton, setOnFormSubmit};
