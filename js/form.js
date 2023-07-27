@@ -33,3 +33,9 @@ const showModal = () => {
 
 form.addEventListener('change', showModal);
 formCancelButton.addEventListener('click', closeModal);
+
+const onFormValueChange = () => {
+  form.addEventListener('change', showModal);
+};
+
+export {onFormValueChange};

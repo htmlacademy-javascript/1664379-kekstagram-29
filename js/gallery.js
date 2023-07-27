@@ -30,7 +30,7 @@ const renderCallery = (pictures) => {
     );
     openPicture(targetPhoto);
   });
-  renderThumbnails(allPhotos, thumbnailsList);
+// renderThumbnails(allPhotos, thumbnailsList);
 };
 
 export {renderCallery};

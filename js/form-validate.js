@@ -44,9 +44,7 @@ pristine.addValidator(
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  if (pristine.validate()) {
-    form.submit();
-  }
+  pristine.validate();
 });
 
 const isTextFieldFocused = () =>
