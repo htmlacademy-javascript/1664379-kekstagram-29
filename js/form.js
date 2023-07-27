@@ -44,9 +44,6 @@ const onFormValueChange = () => {
   form.addEventListener('change', showModal);
 };
 
-
-
-
 //////////
 const blockSubmitButton = () => {
   submitButton.disabled = true;
