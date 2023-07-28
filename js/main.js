@@ -7,6 +7,7 @@ import { closeModal, onFormValueChange, setOnFormSubmit, unblockSubmitButton, bl
 import { showErrorMessage, showSuccessMessage } from './form-message.js';
 import { getData, sendData } from './api.js';
 import { showFilters, setDebouncedFilter } from './filters.js';
+//import {setPreviewPictureListener} from './upload.js';
 
 //
 
@@ -25,12 +26,13 @@ setEffectsSlider();
 onScaleControlBiggerClick();
 onScaleControlSmallerClick();
 
-setOnFormSubmit(async (data) => {
+//////////// загрузка фотографии
+//setPreviewPictureListener();
+////////////
 
+setOnFormSubmit(async (data) => {
   try {
-    //
     blockSubmitButton();
-    //
     await sendData(data);
     closeModal();
     showSuccessMessage();
