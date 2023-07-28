@@ -27,11 +27,11 @@ const filterPictures = (pictures, sortButton) => {
   }
 
   if (sortButton === randomFilter) {
-    return pictures.slice().sort(() => Math.random() - 0.5).slice(0, RANDOM_PICTURES_COUNT);
+    return pictures.toSorted(() => Math.random() - 0.5).slice(0, RANDOM_PICTURES_COUNT);
   }
 
   if (sortButton === discussedFilter) {
-    return pictures.slice().sort((a, b) => b.comments.length - a.comments.length);
+    return pictures.toSorted((a, b) => b.comments.length - a.comments.length);
   }
 };
 
