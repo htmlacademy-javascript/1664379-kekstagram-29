@@ -14,7 +14,7 @@ thumbnailsList.addEventListener('keydown', (evt) => {
 
 //ОБРАБОТЧИК открытие большой картинки нажатием мышки
 
-const renderCallery = (pictures) => {
+const renderGallery = (pictures) => {
   thumbnailsList.addEventListener('click', (evt) => {
     const thumbnail = evt.target.closest('[data-thumbnail-id]');
     if (!thumbnail) {
@@ -29,4 +29,4 @@ const renderCallery = (pictures) => {
   });
 };
 
-export {renderCallery};
+export {renderGallery};

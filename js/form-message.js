@@ -1,15 +1,9 @@
-import { isEscapeKey } from './util.js';
+import { isEscPress } from './util.js';
+
 
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 
-function isEscPress(evt, callback) {
-
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    callback();
-  }
-}
 
 const onSuccessCloseButtonClick = () => {
   closeSuccessMessage();

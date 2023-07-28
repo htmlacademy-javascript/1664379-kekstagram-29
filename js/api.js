@@ -15,19 +15,34 @@ const ErrorText = {
   SEND_DATA: 'Не удалось отправить форму. Попробуйте ещё раз',
 };
 
-const load = async (route, errorText, method = Method.GET, body = null) => {
+let retryesCount = 3;
+
+const DELAY_FOR_RETRY = 5000;
+
+const load = async(route, method = Method.GET, body = null) => {
+  const response = await fetch(route, { method, body });
+  if (!response.ok) {
+    throw new Error();
+  }
+  return response.json();
+};
+
+///повторная отправка запроса
+const setDelay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const loadWhitRetry = async(route, errorText, method = Method.GET, body = null) => {
   try {
-    const response = await fetch(`${BASE_URL}${route}`, { method, body });
-    if (!response.ok) {
-      throw new Error();
+    return await load(`${BASE_URL}${route}`, method, body);
+  } catch(err){
+    if (retryesCount > 0) {
+      await setDelay(DELAY_FOR_RETRY);
+      return loadWhitRetry(route, errorText, method, body, --retryesCount);
     }
-    return response.json();
-  } catch {
     throw new Error(errorText);
   }
 };
-
-const getData = () => load(Route.GET_DATA, ErrorText.GET_DATA);
+/////
+const getData = () => loadWhitRetry(Route.GET_DATA, ErrorText.GET_DATA);
 
 const sendData = (body) => load(Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body);
 
