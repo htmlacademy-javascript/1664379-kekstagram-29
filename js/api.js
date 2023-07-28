@@ -30,8 +30,6 @@ const load = async(route, method = Method.GET, body = null) => {
 ///повторная отправка запроса
 const setDelay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-console.log(setTimeout);
-
 const loadWhitRetry = async(route, errorText, method = Method.GET, body = null) => {
   try {
     return await load(`${BASE_URL}${route}`, method, body);
