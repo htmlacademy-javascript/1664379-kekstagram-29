@@ -42,11 +42,6 @@ pristine.addValidator(
   true
 );
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
-
 const isTextFieldFocused = () =>
   document.activeElement === textHashtags ||
   document.activeElement === textDescription;

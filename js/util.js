@@ -21,7 +21,7 @@ const showAlert = (message) => {
   alertContainer.style.padding = '10px 3px';
   alertContainer.style.fontSize = '20px';
   alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'tomato';
+  alertContainer.style.backgroundColor = '#ff4d4d';
 
   alertContainer.textContent = message;
 
@@ -32,4 +32,13 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {showAlert, createRandomInteger, getRandomArrayElement, isEscapeKey, isEnterKey};
+
+function isEscPress(evt, callback) {
+
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    callback();
+  }
+}
+
+export {showAlert, createRandomInteger, getRandomArrayElement, isEscapeKey, isEnterKey, isEscPress};

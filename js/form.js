@@ -1,7 +1,7 @@
 import { isEscapeKey } from './util.js';
-import {isTextFieldFocused, pristine} from './form-validate.js';
-import {resetEffects} from './effects.js';
-import {resetScale} from './scale.js';
+import { isTextFieldFocused, pristine } from './form-validate.js';
+import { resetEffects } from './effects.js';
+import { resetScale } from './scale.js';
 
 
 const form = document.querySelector('.img-upload__form');//форма загрузки изображения
@@ -61,11 +61,11 @@ const setOnFormSubmit = (callback) => {
     const isValid = pristine.validate();
 
     if (isValid) {
-      blockSubmitButton();
+      // blockSubmitButton();
       callback(new FormData(form));
     }
   });
 };
 /////////////
 
-export {closeModal, onFormValueChange, unblockSubmitButton, blockSubmitButton, setOnFormSubmit};
+export { closeModal, onFormValueChange, unblockSubmitButton, blockSubmitButton, setOnFormSubmit };
