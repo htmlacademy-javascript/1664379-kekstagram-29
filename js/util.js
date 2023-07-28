@@ -41,4 +41,13 @@ function isEscPress(evt, callback) {
   }
 }
 
-export {showAlert, createRandomInteger, getRandomArrayElement, isEscapeKey, isEnterKey, isEscPress};
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export {showAlert, createRandomInteger, getRandomArrayElement, isEscapeKey, isEnterKey, isEscPress, debounce};
