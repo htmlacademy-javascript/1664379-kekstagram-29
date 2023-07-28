@@ -1,5 +1,8 @@
 const STEP = 25;
 const DEFAULT = 100;
+const MIN_SCALE = 25;
+const MAX_SCALE = 100;
+
 let currentScale = DEFAULT;
 
 const form = document.querySelector('.img-upload__form');//форма загрузки изображения
@@ -15,30 +18,28 @@ const resetScale = () => {
 };
 
 //увеличение масштаба
-
-const increaseScale = () => {
-  scaleControlBigger.removeAttribute('disabled');
-  if (scaleControlValue.value === '100%') {
-    scaleControlBigger.setAttribute('disabled', true);
-  } else {
-    currentScale += STEP;
-    scaleControlValue.value = `${currentScale}%`;
-    imgPreview.style.transform = `scale(${currentScale / 100})`;
-    scaleControlSmaller.removeAttribute('disabled');
-  }
-};
+////
 
 const decreaseScale = () => {
-  scaleControlSmaller.removeAttribute('disabled');
   if (scaleControlValue.value === '25%') {
-    scaleControlSmaller.setAttribute('disabled', true);
+    currentScale = MIN_SCALE;
   } else {
     currentScale -= STEP;
     scaleControlValue.value = `${currentScale}%`;
     imgPreview.style.transform = `scale(${currentScale / 100})`;
-    scaleControlBigger.removeAttribute('disabled');
   }
 };
+
+const increaseScale = () => {
+  if (scaleControlValue.value === '100%') {
+    currentScale = MAX_SCALE;
+  } else {
+    currentScale += STEP;
+    scaleControlValue.value = `${currentScale}%`;
+    imgPreview.style.transform = `scale(${currentScale / 100})`;
+  }
+};
+
 
 const onScaleControlBiggerClick = () => {
   scaleControlBigger.addEventListener('click', increaseScale);
