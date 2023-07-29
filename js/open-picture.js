@@ -81,7 +81,7 @@ const renderComments = (items) => {
     fragment.append(comment);
   }
   socialCommentList.append(fragment);
-  commentCount.innerHTML = `${commentsShown} из <span class="comments-count"> ${comments.length}</span> комментариев`;
+  commentCount.innerHTML = `${commentsShown} из <span class="comments-count">${comments.length}</span> комментариев`;
 };
 
 const onCommentsLoaderClick = function () {

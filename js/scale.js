@@ -14,8 +14,6 @@ const resetScale = () => {
 };
 
 //увеличение масштаба
-////
-
 const decreaseScale = () => {
   if (scaleControlValue.value === '25%') {
     scaleControlValue.value = '25%';
@@ -37,7 +35,6 @@ const increaseScale = () => {
     imgPreview.style.transform = `scale(${scale / 100})`;
   }
 };
-
 
 const onScaleControlBiggerClick = () => {
   scaleControlBigger.addEventListener('click', increaseScale);
