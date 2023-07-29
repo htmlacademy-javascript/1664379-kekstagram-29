@@ -10,17 +10,6 @@ import { showFilters, setDebouncedFilter, onFilterClick } from './filters.js';
 import { setPreviewPictureListener } from './upload.js';
 
 
-try {
-  const data = await getData();
-  renderThumbnails(data);
-  renderGallery(data);
-  showFilters();
-  onFilterClick();
-  setDebouncedFilter(data);
-} catch (err) {
-  showAlert(err.message);
-}
-
 onFormValueChange();
 setEffectsSlider();
 onScaleControlBiggerClick();
@@ -40,3 +29,16 @@ setOnFormSubmit(async (data) => {
     unblockSubmitButton();
   }
 });
+
+try {
+  const data = await getData();
+  renderThumbnails(data);
+  renderGallery(data);
+  showFilters();
+  onFilterClick();
+  setDebouncedFilter(data);
+} catch (err) {
+  showAlert(err.message);
+}
+
+
