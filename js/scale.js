@@ -1,7 +1,5 @@
 const STEP = 25;
 const DEFAULT = 100;
-const MIN_SCALE = 25;
-const MAX_SCALE = 100;
 
 let currentScale = DEFAULT;
 
@@ -22,21 +20,23 @@ const resetScale = () => {
 
 const decreaseScale = () => {
   if (scaleControlValue.value === '25%') {
-    currentScale = MIN_SCALE;
+    scaleControlValue.value = '25%';
   } else {
-    currentScale -= STEP;
-    scaleControlValue.value = `${currentScale}%`;
-    imgPreview.style.transform = `scale(${currentScale / 100})`;
+    let scale = parseInt(scaleControlValue.value, 10);
+    scale -= STEP;
+    scaleControlValue.value = `${scale}%`;
+    imgPreview.style.transform = `scale(${scale / 100})`;
   }
 };
 
 const increaseScale = () => {
   if (scaleControlValue.value === '100%') {
-    currentScale = MAX_SCALE;
+    scaleControlValue.value = '100%';
   } else {
-    currentScale += STEP;
-    scaleControlValue.value = `${currentScale}%`;
-    imgPreview.style.transform = `scale(${currentScale / 100})`;
+    let scale = parseInt(scaleControlValue.value, 10);
+    scale -= STEP;
+    scaleControlValue.value = `${scale}%`;
+    imgPreview.style.transform = `scale(${scale / 100})`;
   }
 };
 
