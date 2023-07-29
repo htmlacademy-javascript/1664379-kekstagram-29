@@ -37,7 +37,7 @@ const changeFilter = (evt) => {
 
 const onFilterClick = () => filterForm.addEventListener('click', (evt) => changeFilter(evt));
 
-const FilterRender = (pictures) => {
+const renderFilter = (pictures) => {
   const filterButton = document.querySelector('.img-filters__button--active');
   removePictures();
   renderThumbnails(filterPictures(pictures, filterButton));
@@ -45,7 +45,7 @@ const FilterRender = (pictures) => {
 
 const setDebouncedFilter = (pictures) => {
   filterForm.addEventListener('click', debounce(() => {
-    FilterRender(pictures);
+    renderFilter(pictures);
   }, TIMEOUT));
 };
 
