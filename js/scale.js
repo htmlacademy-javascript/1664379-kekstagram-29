@@ -1,8 +1,6 @@
 const STEP = 25;
 const DEFAULT = 100;
 
-let currentScale = DEFAULT;
-
 const form = document.querySelector('.img-upload__form');//форма загрузки изображения
 const scaleControlBigger = form.querySelector('.scale__control--bigger');//масштаб больше
 const scaleControlSmaller = form.querySelector('.scale__control--smaller');//масштаб меньше
