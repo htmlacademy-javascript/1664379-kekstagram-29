@@ -27,7 +27,7 @@ const closeModal = () => {
 };
 
 const onDocumentKeydownEscape = (evt) => {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) {
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !body.classList.contains('has-modal')) {
     evt.preventDefault();
     closeModal();
   }

@@ -30,7 +30,6 @@ const showSuccessMessage = () => {
 
 function closeSuccessMessage() {
   document.body.querySelector('.success').remove();
-
   document.removeEventListener('click', onSuccessDocumentClick);
   document.removeEventListener('keydown', onCloseSuccessMessage);
 }
