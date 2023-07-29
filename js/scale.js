@@ -34,7 +34,7 @@ const increaseScale = () => {
     scaleControlValue.value = '100%';
   } else {
     let scale = parseInt(scaleControlValue.value, 10);
-    scale -= STEP;
+    scale += STEP;
     scaleControlValue.value = `${scale}%`;
     imgPreview.style.transform = `scale(${scale / 100})`;
   }

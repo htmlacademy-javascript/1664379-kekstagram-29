@@ -9,6 +9,7 @@ const imgUploadOverlay = form.querySelector('.img-upload__overlay');//удали
 const formCancelButton = form.querySelector('.img-upload__cancel');
 const submitButton = form.querySelector('.img-upload__submit');
 const body = document.querySelector('body');
+const preview = document.querySelector('.img-upload__preview img');
 
 const SubmitButtonText = {
   IDLE: 'Опубликовать',
@@ -18,6 +19,7 @@ const SubmitButtonText = {
 const closeModal = () => {
   form.reset();
   pristine.reset();
+  preview.src = 'img/upload-default-image.jpg';
   imgUploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   resetEffects();
