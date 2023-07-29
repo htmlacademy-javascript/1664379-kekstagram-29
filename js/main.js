@@ -6,7 +6,7 @@ import { onScaleControlBiggerClick, onScaleControlSmallerClick } from './scale.j
 import { closeModal, onFormValueChange, setOnFormSubmit, unblockSubmitButton, blockSubmitButton } from './form.js';
 import { showErrorMessage, showSuccessMessage } from './form-message.js';
 import { getData, sendData } from './api.js';
-import { showFilters, setDebouncedFilter, setOnFilterClick } from './filters.js';
+import { showFilters, setDebouncedFilter, onFilterClick } from './filters.js';
 import { setPreviewPictureListener } from './upload.js';
 
 
@@ -15,7 +15,7 @@ try {
   renderThumbnails(data);
   renderGallery(data);
   showFilters();
-  setOnFilterClick();
+  onFilterClick();
   setDebouncedFilter(data);
 } catch (err) {
   showAlert(err.message);

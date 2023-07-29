@@ -29,16 +29,15 @@ const filterPictures = (pictures, sortButton) => {
 const removePictures = () =>
   document.querySelectorAll('.picture').forEach((thumbnail) => thumbnail.remove());
 
-const OnFilterClick = (evt) => {
+const changeFilter = (evt) => {
   filterButtons.forEach((button) => button.classList.remove('img-filters__button--active'));
   const filterButton = evt.target;
   filterButton.classList.add('img-filters__button--active');
 };
 
-const setOnFilterClick = () => filterForm.addEventListener('click', (evt) => OnFilterClick(evt));
+const onFilterClick = () => filterForm.addEventListener('click', (evt) => changeFilter(evt));
 
-const OnFilterRender = (pictures) => {
-
+const FilterRender = (pictures) => {
   const filterButton = document.querySelector('.img-filters__button--active');
   removePictures();
   renderThumbnails(filterPictures(pictures, filterButton));
@@ -46,10 +45,10 @@ const OnFilterRender = (pictures) => {
 
 const setDebouncedFilter = (pictures) => {
   filterForm.addEventListener('click', debounce(() => {
-    OnFilterRender(pictures);
+    FilterRender(pictures);
   }, TIMEOUT));
 };
 
 const showFilters = () => imgFilters.classList.remove('img-filters--inactive');
 
-export { setDebouncedFilter, showFilters, setOnFilterClick };
+export { setDebouncedFilter, showFilters, onFilterClick };
