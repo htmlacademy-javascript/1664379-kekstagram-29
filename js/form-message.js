@@ -28,9 +28,8 @@ const showSuccessMessage = () => {
   document.addEventListener('keydown', onCloseSuccessMessage);
 };
 
-function closeSuccessMessage() {
+function closeSuccessMessage () {
   document.body.querySelector('.success').remove();
-
   document.removeEventListener('click', onSuccessDocumentClick);
   document.removeEventListener('keydown', onCloseSuccessMessage);
 }
@@ -59,7 +58,7 @@ const showErrorMessage = () => {
   document.addEventListener('keydown', onErrorDocumentKeydown);
 };
 
-function closeErrorMessage() {
+function closeErrorMessage () {
   document.body.querySelector('.error').remove();
   document.body.classList.remove('has-modal');
 
@@ -67,4 +66,4 @@ function closeErrorMessage() {
   document.removeEventListener('keydown', onErrorDocumentKeydown);
 }
 
-export{showErrorMessage,showSuccessMessage};
+export{ showErrorMessage, showSuccessMessage };

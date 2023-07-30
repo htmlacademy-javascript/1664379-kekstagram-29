@@ -6,31 +6,20 @@ import { onScaleControlBiggerClick, onScaleControlSmallerClick } from './scale.j
 import { closeModal, onFormValueChange, setOnFormSubmit, unblockSubmitButton, blockSubmitButton } from './form.js';
 import { showErrorMessage, showSuccessMessage } from './form-message.js';
 import { getData, sendData } from './api.js';
-import { showFilters, setDebouncedFilter } from './filters.js';
+import { showFilters, setDebouncedFilter, onFilterClick } from './filters.js';
+import { setPreviewPictureListener } from './upload.js';
 
-//
-
-try {
-  const data = await getData();
-  renderThumbnails(data);
-  renderGallery(data);
-  showFilters();
-  setDebouncedFilter(data);
-} catch (err) {
-  showAlert(err.message);
-}
 
 onFormValueChange();
 setEffectsSlider();
 onScaleControlBiggerClick();
 onScaleControlSmallerClick();
+setPreviewPictureListener();
+
 
 setOnFormSubmit(async (data) => {
-
   try {
-    //
     blockSubmitButton();
-    //
     await sendData(data);
     closeModal();
     showSuccessMessage();
@@ -40,3 +29,16 @@ setOnFormSubmit(async (data) => {
     unblockSubmitButton();
   }
 });
+
+try {
+  const data = await getData();
+  renderThumbnails(data);
+  renderGallery(data);
+  showFilters();
+  onFilterClick();
+  setDebouncedFilter(data);
+} catch (err) {
+  showAlert(err.message);
+}
+
+

@@ -9,6 +9,7 @@ const imgUploadOverlay = form.querySelector('.img-upload__overlay');//удали
 const formCancelButton = form.querySelector('.img-upload__cancel');
 const submitButton = form.querySelector('.img-upload__submit');
 const body = document.querySelector('body');
+const preview = document.querySelector('.img-upload__preview img');
 
 const SubmitButtonText = {
   IDLE: 'Опубликовать',
@@ -18,6 +19,7 @@ const SubmitButtonText = {
 const closeModal = () => {
   form.reset();
   pristine.reset();
+  preview.src = 'img/upload-default-image.jpg';
   imgUploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   resetEffects();
@@ -25,7 +27,7 @@ const closeModal = () => {
 };
 
 const onDocumentKeydownEscape = (evt) => {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) {
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !body.classList.contains('has-modal')) {
     evt.preventDefault();
     closeModal();
   }
@@ -44,7 +46,6 @@ const onFormValueChange = () => {
   form.addEventListener('change', showModal);
 };
 
-//////////
 const blockSubmitButton = () => {
   submitButton.disabled = true;
   submitButton.textContent = SubmitButtonText.SENDING;
@@ -61,11 +62,9 @@ const setOnFormSubmit = (callback) => {
     const isValid = pristine.validate();
 
     if (isValid) {
-      // blockSubmitButton();
       callback(new FormData(form));
     }
   });
 };
-/////////////
 
 export { closeModal, onFormValueChange, unblockSubmitButton, blockSubmitButton, setOnFormSubmit };

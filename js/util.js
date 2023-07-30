@@ -1,3 +1,5 @@
+const ALERT_SHOW_TIME = 5000;
+
 const createRandomInteger = (min, max) => {
   const result = Math.random() * (max - min) + min;
   return Math.floor(result);
@@ -8,8 +10,6 @@ const getRandomArrayElement = (elements) => elements[createRandomInteger(0, elem
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isEnterKey = (evt) => evt.key === 'Enter';
-
-const ALERT_SHOW_TIME = 5000;
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');

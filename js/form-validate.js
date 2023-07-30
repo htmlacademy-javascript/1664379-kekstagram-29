@@ -1,8 +1,9 @@
+const MAX_HASHTAGS_COUNT = 5;
+const VALID_SIMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+
 const form = document.querySelector('.img-upload__form');//форма загрузки изображения
 const textHashtags = form.querySelector('.text__hashtags');
 const textDescription = form.querySelector('.text__description');
-const MAX_HASHTAGS_COUNT = 5;
-const VALID_SIMBOLS = /^#[a-zаяё0-9]{1,19}$/i;
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',

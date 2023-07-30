@@ -1,4 +1,4 @@
-const thumbnailsTemplate = document.querySelector('#picture').content.querySelector('.picture'); //шаблон
+const thumbnailsTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const createThumbnail = ({ comments, description, likes, url, id }) => {
   const thumbnail = thumbnailsTemplate.cloneNode(true);
@@ -21,5 +21,3 @@ const renderThumbnails = (pictures) => {
 };
 
 export{renderThumbnails};
-
-//все готово для отрисовка иконок. переходим в файл gallery
