@@ -1,5 +1,6 @@
-const effectsItems = Array.from(document.querySelectorAll('.effects__preview'));
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+
+const effectsItems = document.querySelectorAll('.effects__preview');
 
 const fileChooser = document.querySelector('.img-upload__input[type=file]');
 const preview = document.querySelector('.img-upload__preview img');

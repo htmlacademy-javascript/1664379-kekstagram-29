@@ -1,5 +1,6 @@
 import { openPicture } from './open-picture.js';
 import { isEnterKey } from './util.js';
+
 const thumbnailsList = document.querySelector('.pictures'); //section куда вставлять изображения
 
 //ОБРАБОТЧИК открытие большой картинки нажатием клавиши ENTER

@@ -1,15 +1,15 @@
 import { renderThumbnails } from './thumbnail.js';
 import { debounce } from './util.js';
 
+const RANDOM_PICTURES_COUNT = 10;
+const TIMEOUT = 500;
+
 const imgFilters = document.querySelector('.img-filters');
 const filterForm = document.querySelector('.img-filters__form');
 const defaultFilter = document.querySelector('#filter-default');
 const randomFilter = document.querySelector('#filter-random');
 const discussedFilter = document.querySelector('#filter-discussed');
 const filterButtons = document.querySelectorAll('.img-filters__button');
-
-const RANDOM_PICTURES_COUNT = 10;
-const TIMEOUT = 500;
 
 const filterPictures = (pictures, sortButton) => {
 

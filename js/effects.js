@@ -49,13 +49,15 @@ const EFFECTS = [
   },
 ];
 
+const DEFAULT_EFFECT = EFFECTS[0];
+
 const form = document.querySelector('.img-upload__form');//форма загрузки изображения
 const imgPreview = form.querySelector('.img-upload__preview img');//сама картинка
 const effectsList = form.querySelector('.effects__list');//ul со списком эффектов
 const effectLevelContainer = form.querySelector('.effect-level');//контейнер со слайдером интенсивности
 const effectLevelSlider = form.querySelector('.effect-level__slider');//интенсивность эффекта
 const effectLevelBar = form.querySelector('.effect-level__value');//input  в контейнере со слайдером
-const DEFAULT_EFFECT = EFFECTS[0];
+
 let chosenEffect = DEFAULT_EFFECT;
 
 //вспомогательные функции

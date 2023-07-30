@@ -1,5 +1,7 @@
 import { isEscapeKey, isEnterKey } from './util.js';
 
+const COMMENTS_IN_SECTION = 5;
+
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture'); //окно большой картинки
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel'); //кнопка закрытия окна с картинкой
@@ -7,18 +9,12 @@ const commentCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const commentTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
 const socialCommentList = bigPicture.querySelector('.social__comments');
+
 socialCommentList.innerHTML = '';
-const COMMENTS_IN_SECTION = 5;
 let commentsShown = 0;
 let comments = [];
 
-//функция для скрытия большой картинки
-const hideBigPicture = () => {
-  bigPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
-};
-
-//функция закрытия картинки нажатием ESCAPE на DOCUMENT
+///функция закрытия картинки нажатием ESCAPE на DOCUMENT
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
@@ -29,12 +25,14 @@ const onDocumentKeydown = (evt) => {
 document.addEventListener('keydown', onDocumentKeydown);
 
 //функция зактытия картинки
-const closePicture = () => {
-  hideBigPicture();
+function closePicture() {
+  bigPicture.classList.add('hidden');
+  body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);//удаление обработчика на документе
   commentsShown = 0;
   socialCommentList.innerHTML = '';
-};
+}
+
 //закрытие картинки нажатием на кнопку
 bigPictureCancel.addEventListener('click', () => {
   closePicture();

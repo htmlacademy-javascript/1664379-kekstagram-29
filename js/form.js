@@ -46,7 +46,6 @@ const onFormValueChange = () => {
   form.addEventListener('change', showModal);
 };
 
-//////////
 const blockSubmitButton = () => {
   submitButton.disabled = true;
   submitButton.textContent = SubmitButtonText.SENDING;
@@ -63,11 +62,9 @@ const setOnFormSubmit = (callback) => {
     const isValid = pristine.validate();
 
     if (isValid) {
-      // blockSubmitButton();
       callback(new FormData(form));
     }
   });
 };
-/////////////
 
 export { closeModal, onFormValueChange, unblockSubmitButton, blockSubmitButton, setOnFormSubmit };

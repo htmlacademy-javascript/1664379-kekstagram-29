@@ -25,6 +25,7 @@ const decreaseScale = () => {
   }
 };
 
+//уменьшение масштаба
 const increaseScale = () => {
   if (scaleControlValue.value === '100%') {
     scaleControlValue.value = '100%';
