@@ -22,7 +22,7 @@ const hideBigPicture = () => {
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    hideBigPicture();
+    closePicture();
   }
 };
 //обработчик на документе закрытие картинки нажатием клавиши ESCAPE УДАЛИТЬ!!!
